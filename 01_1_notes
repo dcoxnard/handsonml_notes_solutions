@@ -1,0 +1,199 @@
+# Chapter 1: The Machine Learning Landscape
+
+- Machine learning is the practice of enabling a machine to learn from data
+
+- Eschews the classical paradigm of programming explicit instructions
+
+- Emphasis is instead on enabling computer to exploit patterns
+
+- Exmaple of a spam filter
+    - Perhaps the earliest example of machine learning deployed widely
+    - Emails are "spam" or not; users wants only spam to be filtered out
+    - Goal is to enable machine to detect text patterns and make predctions
+    - Success of the application is the proportion of correctly classified mail
+        - Termed "accuracy" and is a very common evaluation metric
+    
+- *Why is a spam filter a good use case for machine learning?* (Q)
+    - Traditional approach is a difficult problem:
+        - Need to maintain a bank of spam keywords, perhaps manually
+        - At prediction-time, need to check every term against mail's text
+        - Complexity of manual upkeep + prediction increases with other features
+        - Possible but difficult to learn from new data
+        - Not obvious ahead of time which terms to flag; makes compilation hard
+        - Maintaining a lookup-list only allows for so much flexibility
+    - Contrast with benefits of machine learning-based approach:
+        - Automatically find the keywords that can reliably distinguish spam
+        - Flexibility can be increased by tuning pproc pipeline, model params
+        - Can learn from new data and adapt to emerging trends in spam vocab
+        - Depending on the modeling pipeline, learning could be "online"
+        - Regardless of the pipeline, the learning process is automated
+        - Certain algorithms enable discovery of which terms are discriminative 
+
+- *Why is speech recognition a good use case for machine learning?* (Q)
+    - It is perhaps impossible to devise reliable rules to map speech to text
+        - There is no known algorithm to transform speech audio into text
+        - Every speaker has unique idiosyncracies such as accent, prosody
+        - Different environments affect audio (telephone, cocktail party)
+        - Many languages are not spelled phonetically;, can't just transliterate
+        - Context can be an important clue (e.g. homophones, proper nouns)
+        - Even if these problems solvable, effort scales linearly w/ no. langs
+    - Scales more easily to the complexities of the problem
+        - Discovers of patterns known to exist while discarding noise
+        - Usable on different langs; effort scales with data collection
+        - Data augmentation is a way to enforce invariance under noise
+        - Can learn from new examples and pick up changes in speech patterns
+    - In summary, machine learning has big advantages for problems where:
+        - A manual solution requires lots of fine-tuning and/or lists of rules
+        - The problem involves some present yet complex, hard-to-define pattern
+        - The environment is changing, causing manual methods to become stale
+        - Novel insights about large amounts of data are desired 
+        
+- *Name some examples of machine learning use cases, tasks and models used* (Q)
+    - Classifying images of products on a product line
+        - Task: Image classification
+        - Entire image (group of pixels) is classified
+        - Usually performed by Convolutional Neural Networks
+    - Detecting presence or absence of a tumor in a CAT scan or other imaging:
+        - Task: Semantic Segmentation
+        - Each pixel in the imagine is individually classified
+        - Also uses Convolutional Neural Networks
+    - Automatically assigning a class to a news article:
+        - Task: Text classification
+        - Entire text is classified as a whole
+        - Can be done with Recurrent or RNNs, CNNs, or Transformers
+    - Summarizing long documents:
+        - Task: Text summarization
+        - Output is a new, shorter text
+        - RNNs, CNNs, Transformers
+    - Creating a chatbot:
+        - Tasks: Natural Language Understanding (NRU), Q/A, and others
+    - Forecasting a company's revenue next year, based on performance metrics:
+        - Task: Regression
+        - Linear/Polynomial Regression, regression SVM, regression RF, NN
+        - Incorporating past (sequential) data: RNNs, CNNs, Transformers
+    - Make an app react to voice commands:
+        - Task: Speech recognition
+        - CNNs, RNNs, Transformers
+    - Detecting Credit Card Fraud:
+        - Task: Anomaly detection
+    - Segment customers based on purchases, to deesign per-segment marketing:
+        - Task: Clustering
+        - K-Means, Hierarchical clustering, Matrix decomposition methods, etc.
+    - Represent a high-dimensional, complex dataset in a clear diagram:
+        - Tasks: Data Visualization, Dimensionality Reduction
+    - Recommending a product to a customer, based on previous purchases:
+        - Task: Recommender system, i.e. product ranking
+        - Can use a NN to classify which product a customer will buy next
+        - Other approaches topic modeling, matrix decomposition
+    - Building an intelligent opponent AI for a game:
+        - Task: Reinforcement learning
+        - Train one or more agents to pick actions that maximize a reward
+        
+- Some ways to classify machine learning systems, which can be combined
+    - How much and what type of supervision is used to train:
+        - Supervised: all instances have human-labeled data
+        - Unsupervised: no instances have labels
+        - Semisupervised: some, maybe few, instances have human-labeled data
+        - Reinforcement Learning: training is governed by reward
+    - How often the model is retrained:
+        - Offline: retrain in batches every so often
+        - Online: model is impacted with each new piece of data on-the-fly
+    - How previous data is used:
+        - Model-based: new data is fed through a model to arrive at a prediction
+        - Instance-based: new data is compared directly to previous data
+
+- Supervised learning
+    - Main characteristic is that model trains on data paired with its "answer"
+    - "Answer" may be numeric (regression) or categorical (classification)
+    - Model's "goal" is to use the input data to reproduce the right "answer"
+    - Algorithms covered in the book:
+        - k-Nearest Neighbors
+        - Linear Regression
+        - Logisitic Regression
+        - Support Vector Machines
+        - Tree-based methods (Decision Trees and Random Forests)
+        - Neural Networks
+
+- Unsupervised learning
+    - Main characteristic is that input data does not contain any label
+    - Instead of trying to predict an "answer", tries to discover patterns
+        - Clustering algorithms attempt to group data into "buckets"
+        - Data Viz algos try to reduce features while preserving structure
+        - Dim. Redux attempts to simplify data without losing information
+        - Anomaly Detection ties to flag outliers in a dataset
+        - Novelty detection tries to flag outliers in new data (need clean data)
+        - Association rule learning aims to discover interesting relations
+    - Algorithms covered in the book:
+        - Clustering:
+            - K-Means
+            - DBSCAN
+            - Hierarchical Clustering
+        - Anomaly detection, novelty detection:
+            - One-class SVM
+            - Isolation Forest
+        - Dimensionality Reduction:
+            - Principal Components Analysis
+            - Kernel PCA
+            - Locally Linear Embedding
+            - t-Distributed Stochastic Neighbor Embeddings (t-SNE)
+        - Association Rule Learning:
+            - Apriori
+            - Eclat
+    - Some examples of unsupervised deep learning techniques:
+        - Autoencoders
+        - Restricted Boltzmann Machines        
+
+- Semisupervised learning
+    - Main characteristic is that some, but not all of the data is labelled
+    - Many algorithms combine unsupervised and supervised learning
+    - Example: tagging people in a photo album: 
+        - Unsupervised step: cluster faces of each person
+        - Supervised step: use one manual tag to auto-tag all other instances
+    - Example: Deep Belief Networks:
+        - Stack many Restricted Boltzmann Machines (unsupervised)
+        - Each layer tuned with unsupervised learning techniques
+        - Whole system is then fine-tuned with supervised learning techniques
+        
+- Reinforecement Learning
+    - Main characteristic is an agent-based model where agent seeks a reward
+    - Agent(s) operate in and interact with an environment  
+    - Agent's goal is to learn a policy that return maximum reward over time
+    - Policy defines what an agent should do in any given situation
+    - Examples:
+        - AlphaGo, to play the game of Go
+        - Many robots use reinforcement learning to learn how to walk
+        
+- Batch Learning
+    - System must be trained using all available data "at-once"
+    - System must therefore be trained "offline" every so often
+    - "Batch" may need to include old as well as new data (depends on setting)
+    - Redeployment after training session requires system downtime
+    - Ability to train offline determined by:
+        - Training time and computational resources needed
+        - How quickly the data is expected to change
+        - Storage space for training data (think Mars Rover or smartphone app)
+ 
+ - Online Learning
+    - System is trained very often, either per-instance or in minibatches
+    - Each learning step must be fast and cheap
+    - System learns incrementally on-the fly and then discards instances
+    - Ideal for settings where data arrives in constant stream and need to adapt
+    - Also idea for settings where computational resources are limited
+    - Learning rate is key parameter that governs how quickly the model changes
+    - One drawback is sensitivity to bad data that degrades system
+    
+ - Instance-Based learning
+    - System stores previous data and compares new data directly to it
+    - Can have large storage requirements to store training data
+    - Performance scales (inversely) with size of the dataset
+    
+- Model-Based learning
+    - System constructs a simplified "explanation" of the data
+    - Reduces things down to an optimization problem
+    - Quality of predictions depends partially on developer's modeling choices
+    
+- At a high level, a typical data science project will follow the steps:
+    - Study the data
+    - Select a model
+    - Train the model
+    - Use the model to make predictions on new data
