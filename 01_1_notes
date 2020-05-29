@@ -6,10 +6,10 @@
 
 - Emphasis is instead on enabling computer to exploit patterns
 
-- Exmaple of a spam filter
+- Example of a spam filter
     - Perhaps the earliest example of machine learning deployed widely
     - Emails are "spam" or not; users wants only spam to be filtered out
-    - Goal is to enable machine to detect text patterns and make predctions
+    - Goal is to enable machine to detect text patterns and make predictions
     - Success of the application is the proportion of correctly classified mail
         - Termed "accuracy" and is a very common evaluation metric
     
@@ -76,7 +76,7 @@
         - CNNs, RNNs, Transformers
     - Detecting Credit Card Fraud:
         - Task: Anomaly detection
-    - Segment customers based on purchases, to deesign per-segment marketing:
+    - Segment customers based on purchases, to design per-segment marketing:
         - Task: Clustering
         - K-Means, Hierarchical clustering, Matrix decomposition methods, etc.
     - Represent a high-dimensional, complex dataset in a clear diagram:
@@ -109,7 +109,7 @@
     - Algorithms covered in the book:
         - k-Nearest Neighbors
         - Linear Regression
-        - Logisitic Regression
+        - Logistic Regression
         - Support Vector Machines
         - Tree-based methods (Decision Trees and Random Forests)
         - Neural Networks
@@ -197,3 +197,46 @@
     - Select a model
     - Train the model
     - Use the model to make predictions on new data
+    
+- What can prevent a Data Science project from being successful?
+    - Not enough training data inhibits power to learn needed patterns
+    - Data that is not representative can cause wrong pattern to be learned
+        - Due to sampling noise (nonrepresentativeness due to chance)
+        - Due to sampling bias (flawed methodology of data collection)
+     - Poor data quality due to noise, outliers, errors
+     - Data that includes irrelevant features (mitigated by feature engineering)
+     - Overfitting the training data with a too-flexible model
+     
+ - *What are some steps you can take to mitigate overfitting?* (Q)
+    - Gather more (good-quality) training data
+    - Create more data via data augmentation
+    - Specify a model with fewer features, e.g. hand-crafted or Dim Redux
+    - Constrain the model, e.g. with regularization or dropout
+    - Use a less flexible model architecture
+    
+- *What are some steps you can take to mitigate underfitting?* (Q)
+    - Use a more flexible model architecture
+    - Reduce constraints, i.e. regularization
+    - Create more features to use
+    
+- Testing and Validating
+    - Need to test is driven by risk of deploying a new system into production
+    - Test first on a test dataset to safely evaluate generalization power
+    - Using test set gives estimate of generalization (out-of-sample) error
+    - Low training error yet high test error is a clear indication of overfit
+    - Amount of data to hold out depends on specific setting
+    - Test set enables comparisons between different models
+    - Distinction between testing and validation is crucial to avoid overfit
+        - Hyperparameters etc. must be tuned via validation, not test data
+        - Failure to remember this can lead to overfitting the test set
+        - After validation, model is chosen and retrained on all training data
+    - Cross validation is used to get better estimate of generalization error
+    - Test set *must* be representative of data to be used in production
+
+- No Free Lunch Theorem
+    - In the absence of assumptions, cannot tell which model will perform best
+    - However, this is not possible due to the size of the modeling universe
+    - Thus, it is necessary to make simplifying assumptions about the data
+    - This shrinks the scope of models to be evaluated to a reasonable size
+    - A model is essentially a set of simplifying assumptions about the world
+    
