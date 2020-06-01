@@ -30,6 +30,9 @@
 
 - The higher the norm-index, the more large values are overweighted
 
+- Test set must be created right away to prevent data leakage and snooping
+    - Per-subset test sets can help gain a deeper understanding of the data
+
 - A subtle gotcha in constructing a test set for data that changes over time:
     - Can't do `np.random.seed()` b/c won't consistently pick same instances
     - Can't just `df.to_csv()` because need to allow for data changing
@@ -85,6 +88,8 @@
     - Data is represented as `numpy` / `scipy` arrays and matrices
     - `Pipeline` created by composing arbitrary transformers and final estimator
         - `Pipeliine` itself is an estimator
+        - Names have to be unique and can't contain double underscores
+        `Pipeline` exposes the methods of its final estimator
   
 - *When does it make sense to encode a categorical feature as ordinal?* (Q)      
     - Makes sense when there is an ordering of feature's values
@@ -95,3 +100,75 @@
 - *What are some strategies to deal with high-cardinality features?* (Q)
     - Find ways to convert features to numeric
     - Replace feature with a learnable, low-dimensional embedding
+    
+- Any class with.fit(), .transform(), and .fit_transform can be used in Pipeline
+    - Inherit from `BaseEstimator` to get `.get_params()` and `.set_params()`
+    - Inherit from `TransformerMixin` to get auto-implemented `.fit_transform()`
+    - Choosing hyperparameters helps figure out which transforms are useful
+
+- *What are common ways to scale features? What are their (dis)advantages?* (Q)
+    - Normalization (min-max scaling) makes a feature range from 0 to 1
+        - sklearn MinMaxScaler
+    - Standardization sets mean to 0 and standard deviation to 1
+        - sklearn StandardScaler
+    - Standardization doesn't bound the values, which can be problem for NNs
+    - Normalization is susceptible to outliers
+
+- *How must feature scaling fit into overall data transformation process?* (Q)
+    - Don't need to scale the target, just the features
+    - Transformer must be fit *only* on train set, and not refit on test set    
+
+- *Which algorithms (don't) require feature scaling, and why?* {Q)
+
+- K-fold cross validation gives some estimates of the test error
+    - Stddev of scores gives estimate of the spread of the estimate
+    - Train on (k-1)/k rows of the data, and evaluate on 1/k rows
+    - Repeat the process k times and collect the resulting scores
+    - sklearn requires a utility function, not a cost function
+    - Tradeoff of K-fold cross validation is that it takes k times as long
+    
+- Recommended to first try out some various models to narrow to 2-5 candidates
+    - Don't spend too much time tweaking hyperparameters
+    
+- `joblib` library can be more efficient than pickle for large numpy arrays
+
+- *What are the tradeoffs in using `GridSearchCV` or `RandomizedSearchCV`*? (Q)
+    - Grid search offers more systematic information about the search space
+    - Randomized search enables search through a high-dimensional HP-space
+    - Randomized search enables a simpler specification of "computation budget"
+    
+- Using ensemble methods makes sense if different models make different mistakes
+
+- 95% CI of estimate of test error helps understand model performance
+
+- Post-modeling steps that are not to be forgotten:
+    - Present solution, capabilities and limitations, what worked + what didn't
+    - Document everything
+    - Write tests
+    - Tidy up data visualizations for presentation
+
+- Some ways t deploy the final model:
+    - Within a web app: model is contained within the application code
+    - As a standalone web service behind a RESTful API
+        - More modular, decouples from logic/language of web app
+        - Easier / safer to maintain, upgrade,3 scale and load-balance
+    - Deploy using Google Cloud AI Platform and Google Cloud Storage
+        - Cookie-cutter approach to deploying standalone web service
+        - Scaling and load-balancing are handled under the hood
+        
+- Set up monitoring to detect sharp failures and "model rot"
+    - In some situations, model rot is easy to detect by looking downstream
+        - E.g. % of products sold that were recommended to a user
+        - Easy to automate this logic
+    - Sometimes human intervention is the only way to monitor performance
+        - Sample for human-review QA, especially low-confidence predictions
+        - May require specialists or may be achievable with e.g. Mechanical Turk
+    - Don't forget to define the process: what to do when model fails
+    
+- It is possible to automate a lot of the DS lifecycle, if inputs are well-known
+    - Data collection
+    - Model retraining / hyperparameter search
+    - Model evaluation (e.g. dump current and challenger scores to a report)
+    - Deployment into production if challenger model is better
+    - Model versioning, archival and rollback
+    - Data versioning, archival, comparison and (some) QA
