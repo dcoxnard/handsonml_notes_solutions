@@ -110,6 +110,7 @@
     - If labels imbalanced can weight by support (lower weight for rarer labels)
     
 - Multioutput classification is the most general setting
-    - Multuple labels, and each label can take more than 2 values
+    - Multiple labels, and each label can take more than 2 values
+    - Example: removing noise from images (predicting a value for all pixels)
     
 - 
