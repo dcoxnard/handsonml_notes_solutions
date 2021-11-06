@@ -1,0 +1,122 @@
+# Outline of Review
+
+## Probability
+
+### Fundamentals
+- Permutations & Combinations
+- Rules of Probability
+    - P(A & B)
+    - P(A | B)
+    - P(~A)
+    - Conditional Probability
+    - Independence
+- Bayes's Rule
+- Definitions & theorems for Expected Value and Variance
+- What is the difference between an average and expected value?
+
+### Distributions
+- Bernouilli
+    - Give definition
+    - Formula for mean and variance / standard deviation
+    - Create a toy example for pencil-paper
+    - Create a toy example for Python
+    - Bonus would be R and Julia
+    - Real-world problem example
+- Uniform
+- Binomial
+- Multinomial
+- Exponential
+- Poisson
+- Gaussian
+    - Law of Large Numbers (strong and weak)
+    - Central Limit Theorem
+- What rules need to be satisfied by probability distributions?
+
+### Brainteasers
+- Birthday Problem
+- Monty Hall Problem
+- Prosecutor's Fallacy
+- Boy-Girl Problem
+
+## Statistics
+- Definition of population, sample mean
+- Definition of population, sample variance and standard deviation
+- Definition of covariance, correlation
+- A/B Test
+- Hypothesis test
+    - What kinds are there?
+    - Procedure?  Implement in Python
+    - Give some toy problems
+    - Confidence Intervals
+    - How does the hypothesis test for categorical data differ from the hypothesis test fornumerical data?
+- Types of bias
+- Evaluating the normal approximation
+    - Why is it important to evaluate the appropriateness of the normality assumption?
+
+## Programming
+- Compile Metis pair programming problems
+- Cracking the Coding Interview
+- Hackerrank
+
+## Modeling
+### Supervised
+#### Regression
+    - Linear Regression
+    - LASSO
+    - Ridge Regression
+    - GLMs
+    - GAMs
+#### Classification
+    - Logistic Regression
+        - Multinomial
+    - Naive Bayes
+    - Support Vector Machine
+    - Decision Tree
+    - Random Forest
+    - Boosted, Bagged Trees
+    - Linear Discriminant Analysis
+    - K Nearest Neighbors
+
+### Unsupervised
+#### Dimensionality Reduction
+- Principal Components Analysis
+
+#### Clustering
+- K Means
+- Hierarchical Clustering
+- DBSCAN
+- Mean Shift
+- Others? See Metis Notes
+
+#### Matrix Completion & Recommender Systems
+- Nonnegative Matrix Factorization
+- Latent Dirichlet Allocation
+- Others? See Metis Notes
+
+### Deep Learning
+
+### Engineering
+- Data Leakage
+- Sklearn transformers
+- Qualitative features
+- When to normalize / standardize
+
+### Validation
+- Bias / Variance tradeoff
+- Accuracy / Interpretability tradeoff
+- Metrics
+    - Accuracy
+    - Precision
+    - Recall
+    - Specificity
+    - Sensitivity
+    - F1
+    - Give formulas
+    - Implement python function
+    - Use sklearn tools
+- Loss functions
+- Feature selection / importance
+- Cross Validation
+- Bootstrapping
+- Curse of Dimensionality
+- Dealing with missing data
