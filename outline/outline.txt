@@ -30,6 +30,7 @@
 - Gaussian
     - Law of Large Numbers (strong and weak)
     - Central Limit Theorem
+    - When is it appropriate to approximate normal
 - What rules need to be satisfied by probability distributions?
 
 ### Brainteasers
@@ -48,7 +49,7 @@
     - Procedure?  Implement in Python
     - Give some toy problems
     - Confidence Intervals
-    - How does the hypothesis test for categorical data differ from the hypothesis test fornumerical data?
+    - How does the hypothesis test for categorical data differ from the hypothesis test for numerical data?
 - Types of bias
 - Evaluating the normal approximation
     - Why is it important to evaluate the appropriateness of the normality assumption?
